@@ -17,7 +17,7 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: Fetch latest android kernel source
-        run: https://github.com/peasoft/android_kernel_oppo_A37.git .
+        run: git clone https://github.com/peasoft/android_kernel_oppo_A37.git .
         
       - name: Fetch build tool chain
         run: curl https://bitbucket.org/jonascardoso/toolchain_aarch64_travis/get/517026371d60.zip
