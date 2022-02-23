@@ -31,6 +31,7 @@ jobs:
         run: |
           export ARCH=arm64
           export SUBARCH=arm64
+          make clean
           make oppo6750_15127_defconfig
           echo "\n" >> .config
           echo CONFIG_KERNEL_GZIP=y >> .config
