@@ -29,11 +29,18 @@ jobs:
         
       - name: Enable drivers for kvm
         run: |
-          cat android/configs/android-base.cfg > .config
-          cat android/configs/android-recommended.cfg >> .config
+          export ARCH=arm64
+          export SUBARCH=arm64
+          make oppo6750_15127_defconfig
+          echo "\n" >> .config
+          echo CONFIG_KERNEL_GZIP=y >> .config
           echo CONFIG_VT=y >> .config
           echo CONFIG_VIRTUALIZATION=y >> .config
           echo CONFIG_KVM=y >> .config
+          make oldconfig
+      
+      - name: Chmod for kernel
+        run: sudo chmod -R 777 .
       
       - name: Build android kernel
         run: |
@@ -42,7 +49,7 @@ jobs:
           export SUBARCH=arm64
           export PATH=$PATH:$ANDROID_AARCH64
           export CROSS_COMPILE=aarch64-linux-android-
-          make
+          sudo make
       
       - name : Upload kernel
         uses: actions/upload-artifact@master
