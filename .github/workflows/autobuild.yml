@@ -35,6 +35,8 @@ jobs:
           export SUBARCH=arm64
           make clean
           make h7000_defconfig
+          echo CONFIG_KERNEL_GZIP=y >> .config
+          make oldconfig
           
       - name: Chmod for kernel
         run: sudo chmod -R 777 .
