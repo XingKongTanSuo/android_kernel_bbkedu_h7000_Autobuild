@@ -33,8 +33,8 @@ jobs:
           cd kernelsource
           export ARCH=arm64
           export SUBARCH=arm64
-          make clean
-          make h7000_defconfig
+          sudo make clean
+          sudo make h7000_defconfig
           
       - name: Chmod for kernel
         run: sudo chmod -R 777 .
