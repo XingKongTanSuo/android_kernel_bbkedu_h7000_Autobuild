@@ -50,7 +50,6 @@ jobs:
           sudo make -j3 STOP_SHIP_TRACEPRINTK=1
           n
           n
-          Gzip
       
       - name : Upload kernel
         uses: actions/upload-artifact@master
