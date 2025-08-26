@@ -31,6 +31,8 @@ jobs:
       - name: Configure kernel
         run: |
           cd kernelsource
+          export ARCH=arm64
+          export SUBARCH=arm64
           make h7000_defconfig
           ./scripts/config --file .config \
             --set-val CONFIG_KERNEL_GZIP y \
