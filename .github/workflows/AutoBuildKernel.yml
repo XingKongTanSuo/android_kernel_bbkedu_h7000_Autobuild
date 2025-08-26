@@ -37,11 +37,10 @@ jobs:
         run: |
           cd kernelsource
           [ -f drivers/gpu/msm/kgsl_trace.h ] || touch drivers/gpu/msm/kgsl_trace.h
-          mv drivers/gpu/msm/Kgsl_Trace.h drivers/gpu/msm/kgsl_trace.h 2>/dev/null || true
-          mv drivers/gpu/msm/KGSL_TRACE.H drivers/gpu/msm/kgsl_trace.h 2>/dev/null || true
-          sed -i 's/#define TRACE_INCLUDE_PATH .*/#define TRACE_INCLUDE_PATH $(srctree)\/drivers\/gpu\/msm/' drivers/gpu/msm/kgsl_trace.h
-          sed -i 's/#include "kgsl_trace.h"/#include "drivers\/gpu\/msm\/kgsl_trace.h"/' drivers/gpu/msm/kgsl_trace.c
+          sed -i 's/#include "drivers\/gpu\/msm\/kgsl_trace.h"/#include "kgsl_trace.h"/' drivers/gpu/msm/kgsl_trace.c
+          sed -i 's/#define TRACE_INCLUDE_PATH .*/#define TRACE_INCLUDE_PATH drivers\/gpu\/msm/' drivers/gpu/msm/kgsl_trace.h
           echo "ccflags-y += -I\$(srctree)/drivers/gpu/msm" >> drivers/gpu/msm/Makefile
+          echo "KBUILD_CFLAGS += -I\$(srctree)/drivers/gpu/msm" >> Makefile
           
       - name: Configure kernel
         run: |
