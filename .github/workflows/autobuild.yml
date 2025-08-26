@@ -51,7 +51,6 @@ jobs:
           export PATH=$PATH:$ANDROID_AARCH64
           export CROSS_COMPILE=aarch64-linux-android-
           sudo make -j3 STOP_SHIP_TRACEPRINTK=1
-          make oldconfig
       
       - name : Upload kernel
         uses: actions/upload-artifact@master
