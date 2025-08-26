@@ -27,7 +27,7 @@ jobs:
           unzip jonascardoso-toolchain_aarch64_travis-517026371d60 -d .
           mv jonascardoso-toolchain_aarch64_travis-517026371d60 toolchain
         
-      - name: Enable drivers for kvm
+      - name: init
         run: |
           cd kernelsource
           export ARCH=arm64
