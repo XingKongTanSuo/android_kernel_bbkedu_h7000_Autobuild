@@ -46,7 +46,8 @@ jobs:
           export SUBARCH=arm64
           export PATH=$PATH:$ANDROID_AARCH64
           export CROSS_COMPILE=aarch64-linux-android-
-          sudo make
+          sudo make h7000_defconfig
+          sudo make 0=out -j3
       
       - name : Upload kernel
         uses: actions/upload-artifact@master
