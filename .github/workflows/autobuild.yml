@@ -49,7 +49,6 @@ jobs:
           export PATH=$PATH:$ANDROID_AARCH64
           export DEFCONFIG="arch/arm64/configs/h7000_defconfig"
           export CROSS_COMPILE=aarch64-linux-android-
-          sudo make h7000_defconfig
           sudo make -j3 STOP_SHIP_TRACEPRINTK=1
       
       - name : Upload kernel
