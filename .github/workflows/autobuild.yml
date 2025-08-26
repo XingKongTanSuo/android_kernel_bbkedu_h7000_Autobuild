@@ -24,7 +24,7 @@ jobs:
         
       - name: Unzip build tool chain
         run: |
-          unzip toolchain.zip -d .
+          unzip jonascardoso-toolchain_aarch64_travis-517026371d60.zip -d .
           mv jonascardoso-toolchain_aarch64_travis-517026371d60 toolchain
         
       - name: Enable drivers for kvm
