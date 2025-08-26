@@ -45,7 +45,7 @@ jobs:
           ./scripts/config --set-val WCD934X_CODEC y
           ./scripts/config --set-val COMPILE_TEST n
           ./scripts/config --set-val LOCALVERSION_AUTO n
-          make ARCH=arm64 oldconfig
+          make oldconfig
           
       - name: Chmod for kernel
         run: sudo chmod -R 777 .
