@@ -66,4 +66,5 @@ jobs:
         with:
           name: kernel_build
           path: |
-            ./output/arch/arm64/boot/Iamage
+            ./output/arch/arm64/boot/Image
+            ./arch/arm64/boot/Image
