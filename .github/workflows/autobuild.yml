@@ -35,6 +35,7 @@ jobs:
           export SUBARCH=arm64
           make clean
           make h7000_defconfig
+          echo "\n" >> .config
           echo CONFIG_KERNEL_GZIP=y >> .config
           make oldconfig
           
