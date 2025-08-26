@@ -49,7 +49,7 @@ jobs:
           export PATH=$PATH:$ANDROID_AARCH64
           export CROSS_COMPILE=aarch64-linux-android-
           sudo make h7000_defconfig
-          sudo make 0=out -j3 STOP_SHIP_TRACEPRINTK=1
+          sudo make -j3 STOP_SHIP_TRACEPRINTK=1
       
       - name : Upload kernel
         uses: actions/upload-artifact@master
