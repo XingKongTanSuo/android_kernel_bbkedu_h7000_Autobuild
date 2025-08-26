@@ -1,0 +1,64 @@
+name: AutoBuild2
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 2
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y python2
+          sudo ln -s /usr/bin/python2 /usr/bin/python
+
+      - name: Fetch kernel source
+        run: |
+          git clone https://github.com/XingKongTanSuo/android_kernel_bbkedu_H7000.git --depth 1 kernelsource
+
+      - name: Fetch and prepare toolchain
+        run: |
+          curl -o toolchain.zip https://bitbucket.org/jonascardoso/toolchain_aarch64_travis/get/517026371d60.zip
+          unzip toolchain.zip -d toolchain
+          TOOLCHAIN_PATH=$(find toolchain -name "aarch64-linux-android-4.9" -type d)
+          echo "TOOLCHAIN_PATH=${TOOLCHAIN_PATH}/bin" >> $GITHUB_ENV
+          chmod -R 755 toolchain
+
+      - name: Configure kernel
+        run: |
+          cd kernelsource
+          make h7000_defconfig
+          ./scripts/config --file .config \
+            --set-val CONFIG_KERNEL_GZIP y \
+            --set-val CONFIG_KERNEL_BZIP2 n \
+            --set-val CONFIG_KERNEL_LZMA n \
+            --set-val CONFIG_KERNEL_XZ n \
+            --set-val CONFIG_KERNEL_LZO n \
+            --set-val CONFIG_KERNEL_LZ4 n \
+            --set-val CONFIG_STACKPROTECTOR n \
+            --set-val CONFIG_STACKPROTECTOR_STRONG n
+          yes "" | make oldconfig
+
+      - name: Build kernel
+        run: |
+          cd kernelsource
+          export ARCH=arm64
+          export SUBARCH=arm64
+          export PATH=$PATH:${{ env.TOOLCHAIN_PATH }}
+          export CROSS_COMPILE=aarch64-linux-android-
+          make -j$(nproc) V=1 2>&1 | tee build.log
+          ls -lh arch/arm64/boot/Image
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: kernel_build
+          path: |
+            kernelsource/arch/arm64/boot/Image
+            kernelsource/vmlinux
+            kernelsource/build.log
