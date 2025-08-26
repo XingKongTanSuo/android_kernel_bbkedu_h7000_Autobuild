@@ -1,1 +1,1 @@
-# Build Android Kernel with kvm for OPPO A37/A37m (MT6750)
+# Build Android Kernel for bbkedu h7000 (sdm660)
