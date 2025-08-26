@@ -60,7 +60,7 @@ jobs:
           export SUBARCH=arm64
           export PATH=$PATH:$ANDROID_AARCH64
           export CROSS_COMPILE=aarch64-linux-android-
-          make -j$(nproc) V=1 2>&1 | tee build.log
+          make -j3 | tee build.log
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
