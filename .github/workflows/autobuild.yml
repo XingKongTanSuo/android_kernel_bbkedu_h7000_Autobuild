@@ -20,11 +20,11 @@ jobs:
         run: git clone https://github.com/peasoft/android_kernel_oppo_A37.git .
         
       - name: Fetch build tool chain
-        run: curl -o toolchain.zip https://bitbucket.org/jonascardoso/toolchain_aarch64_travis/get/517026371d60.zip
+        run: curl -o jonascardoso-toolchain_aarch64_travis-517026371d60.zip https://bitbucket.org/jonascardoso/toolchain_aarch64_travis/get/517026371d60.zip
         
       - name: Unzip build tool chain
         run: |
-          unzip jonascardoso-toolchain_aarch64_travis-517026371d60.zip -d .
+          unzip jonascardoso-toolchain_aarch64_travis-517026371d60 -d .
           mv jonascardoso-toolchain_aarch64_travis-517026371d60 toolchain
         
       - name: Enable drivers for kvm
