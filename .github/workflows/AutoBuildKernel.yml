@@ -33,11 +33,15 @@ jobs:
           unzip toolchain.zip -d toolchain
           chmod -R 755 toolchain
 
-      - name: Fix kgsl trace path
+      - name: Apply kgsl fix
         run: |
           cd kernelsource
-          sed -i 's/#define TRACE_INCLUDE_PATH .*/#define TRACE_INCLUDE_PATH drivers\/gpu\/msm/' drivers/gpu/msm/kgsl_trace.h
-          grep "TRACE_INCLUDE_PATH" drivers/gpu/msm/kgsl_trace.h
+          [ -f drivers/gpu/msm/kgsl_trace.h ] || touch drivers/gpu/msm/kgsl_trace.h
+          mv drivers/gpu/msm/Kgsl_Trace.h drivers/gpu/msm/kgsl_trace.h 2>/dev/null || true
+          mv drivers/gpu/msm/KGSL_TRACE.H drivers/gpu/msm/kgsl_trace.h 2>/dev/null || true
+          sed -i 's/#define TRACE_INCLUDE_PATH .*/#define TRACE_INCLUDE_PATH $(srctree)\/drivers\/gpu\/msm/' drivers/gpu/msm/kgsl_trace.h
+          sed -i 's/#include "kgsl_trace.h"/#include "drivers\/gpu\/msm\/kgsl_trace.h"/' drivers/gpu/msm/kgsl_trace.c
+          echo "ccflags-y += -I\$(srctree)/drivers/gpu/msm" >> drivers/gpu/msm/Makefile
           
       - name: Configure kernel
         run: |
