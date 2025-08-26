@@ -27,7 +27,7 @@ jobs:
           unzip jonascardoso-toolchain_aarch64_travis-517026371d60 -d .
           mv jonascardoso-toolchain_aarch64_travis-517026371d60 toolchain
         
-      - name: init
+      - name: Prepare
         run: |
           sudo apt install python2 -y
           cd kernelsource
@@ -52,7 +52,6 @@ jobs:
       
       - name: Build android kernel
         run: |
-          cd kernelsource
           export ANDROID_AARCH64=$(pwd)/toolchain/google_gcc/aarch64-linux-android-4.9/bin/
           export ARCH=arm64
           export SUBARCH=arm64
