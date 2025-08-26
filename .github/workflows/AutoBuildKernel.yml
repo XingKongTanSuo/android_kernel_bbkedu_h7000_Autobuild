@@ -67,5 +67,5 @@ jobs:
         with:
           name: kernel_build
           path: |
-            /home/runner/work/android_kernel_bbkedu_h7000_Autobuild/android_kernel_bbkedu_h7000_Autobuild/kernelsource/arch/arm64/boot/Image
+            /home/runner/work/android_kernel_bbkedu_h7000_Autobuild/android_kernel_bbkedu_h7000_Autobuild/kernelsource/arch/arm64/boot/Image.gz-dtb
 
