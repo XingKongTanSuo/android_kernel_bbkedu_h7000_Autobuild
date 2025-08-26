@@ -65,5 +65,5 @@ jobs:
         with:
           name: kernel_build
           path: |
-            ./kernelsource/out/arch/arm64/boot/Image.gz-dtb
+            kernelsource/arch/arm64/boot/Image
 
