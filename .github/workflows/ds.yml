@@ -11,10 +11,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Python 2
+      - name: Prepare environment
         run: |
           sudo apt-get update
-          sudo apt-get install -y python2
+          sudo apt-get install -y \
+            python2 \
+            flex \
+            bison \
+            libssl-dev \
+            bc \
+            libelf-dev \
+            libncurses-dev
 
       - name: Fetch kernel source
         run: |
