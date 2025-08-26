@@ -17,7 +17,7 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: Fetch latest android kernel source
-        run: git clone https://github.com/XingKongTanSuo/android_kernel_bbkedu_H7000.git kernelsource
+        run: git clone https://github.com/XingKongTanSuo/android_kernel_bbkedu_H7000.git --depth 1 kernelsource
         
       - name: Fetch build tool chain
         run: curl -o jonascardoso-toolchain_aarch64_travis-517026371d60.zip https://bitbucket.org/jonascardoso/toolchain_aarch64_travis/get/517026371d60.zip
