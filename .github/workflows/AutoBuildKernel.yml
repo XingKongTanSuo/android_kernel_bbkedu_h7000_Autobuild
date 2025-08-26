@@ -55,6 +55,7 @@ jobs:
       - name: Build kernel
         run: |
           cd kernelsource
+          export ANDROID_AARCH64=$(pwd)/toolchain/google_gcc/aarch64-linux-android-4.9/bin/
           export ARCH=arm64
           export SUBARCH=arm64
           export PATH=$PATH:${{ env.TOOLCHAIN_PATH }}
