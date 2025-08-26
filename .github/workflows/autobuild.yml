@@ -35,17 +35,6 @@ jobs:
           export SUBARCH=arm64
           make clean
           make h7000_defconfig
-          ./scripts/config --set-val CONFIG_KERNEL_GZIP y
-          ./scripts/config --set-val SOUND y
-          ./scripts/config --set-val SND y
-          ./scripts/config --set-val SND_SOC y
-          ./scripts/config --set-val MSM_QDSP6_APRV2_GLINK y
-          ./scripts/config --set-val PINCTRL y
-          ./scripts/config --set-val ARCH_QCOM y
-          ./scripts/config --set-val WCD934X_CODEC y
-          ./scripts/config --set-val COMPILE_TEST n
-          ./scripts/config --set-val LOCALVERSION_AUTO n
-          make oldconfig
           
       - name: Chmod for kernel
         run: sudo chmod -R 777 .
@@ -58,6 +47,9 @@ jobs:
           export PATH=$PATH:$ANDROID_AARCH64
           export CROSS_COMPILE=aarch64-linux-android-
           sudo make -j3 STOP_SHIP_TRACEPRINTK=1
+          n
+          n
+          1
       
       - name : Upload kernel
         uses: actions/upload-artifact@master
