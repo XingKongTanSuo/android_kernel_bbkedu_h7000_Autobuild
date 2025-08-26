@@ -29,6 +29,7 @@ jobs:
         
       - name: Enable drivers for kvm
         run: |
+          cd android_kernel_oppo_A37
           export ARCH=arm64
           export SUBARCH=arm64
           make clean
