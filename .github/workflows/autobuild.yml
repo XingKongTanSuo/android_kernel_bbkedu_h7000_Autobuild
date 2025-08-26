@@ -29,6 +29,7 @@ jobs:
         
       - name: init
         run: |
+          apt install python2
           cd kernelsource
           export ARCH=arm64
           export SUBARCH=arm64
