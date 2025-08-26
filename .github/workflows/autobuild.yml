@@ -33,14 +33,15 @@ jobs:
           cd kernelsource
           export ARCH=arm64
           export SUBARCH=arm64
-          sudo make clean
-          sudo make h7000_defconfig
+          make clean
+          make h7000_defconfig
           
       - name: Chmod for kernel
         run: sudo chmod -R 777 .
       
       - name: Build android kernel
         run: |
+          cd kernelsource
           export ANDROID_AARCH64=$(pwd)/toolchain/google_gcc/aarch64-linux-android-4.9/bin/
           export ARCH=arm64
           export SUBARCH=arm64
