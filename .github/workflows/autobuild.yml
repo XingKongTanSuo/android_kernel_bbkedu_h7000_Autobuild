@@ -17,7 +17,7 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: Fetch latest android kernel source
-        run: git clone https://github.com/peasoft/android_kernel_oppo_A37.git kernelsource
+        run: git clone https://github.com/XingKongTanSuo/android_kernel_bbkedu_H7000.git kernelsource
         
       - name: Fetch build tool chain
         run: curl -o jonascardoso-toolchain_aarch64_travis-517026371d60.zip https://bitbucket.org/jonascardoso/toolchain_aarch64_travis/get/517026371d60.zip
@@ -33,13 +33,8 @@ jobs:
           export ARCH=arm64
           export SUBARCH=arm64
           make clean
-          make oppo6750_15127_defconfig
-          echo "\n" >> .config
-          echo CONFIG_KERNEL_GZIP=y >> .config
-          echo CONFIG_VT=y >> .config
-          echo CONFIG_VIRTUALIZATION=y >> .config
-          echo CONFIG_KVM=y >> .config
-          make oldconfig
+          make h7000_defconfig
+          
       
       - name: Chmod for kernel
         run: sudo chmod -R 777 .
@@ -56,5 +51,5 @@ jobs:
       - name : Upload kernel
         uses: actions/upload-artifact@master
         with:
-          name: kernel_A37_kvm
+          name: kernel_h7000
           path: ./output/arch/arm64/boot/
