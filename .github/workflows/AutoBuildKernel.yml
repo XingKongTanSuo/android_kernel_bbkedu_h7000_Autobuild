@@ -53,6 +53,8 @@ jobs:
       - name: Build kernel
         run: |
           cd kernelsource
+          export STOP_SHIP_TRACEPRINTK=1
+          export LINUX_GCC_CROSS_COMPILE_PREBUILTS_BIN=$(pwd)/toolchain/jonascardoso-toolchain_aarch64_travis-517026371d60/google_gcc/aarch64-linux-android-4.9/bin/
           export ANDROID_AARCH64=$(pwd)/toolchain/jonascardoso-toolchain_aarch64_travis-517026371d60/google_gcc/aarch64-linux-android-4.9/bin/
           export ARCH=arm64
           export SUBARCH=arm64
