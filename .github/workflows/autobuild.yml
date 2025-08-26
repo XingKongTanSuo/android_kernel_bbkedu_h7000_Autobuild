@@ -17,7 +17,7 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: Fetch latest android kernel source
-        run: git clone https://github.com/peasoft/android_kernel_oppo_A37.git .
+        run: git clone https://github.com/peasoft/android_kernel_oppo_A37.git kernelsource
         
       - name: Fetch build tool chain
         run: curl -o jonascardoso-toolchain_aarch64_travis-517026371d60.zip https://bitbucket.org/jonascardoso/toolchain_aarch64_travis/get/517026371d60.zip
@@ -29,7 +29,7 @@ jobs:
         
       - name: Enable drivers for kvm
         run: |
-          cd android_kernel_oppo_A37
+          cd kernelsource
           export ARCH=arm64
           export SUBARCH=arm64
           make clean
