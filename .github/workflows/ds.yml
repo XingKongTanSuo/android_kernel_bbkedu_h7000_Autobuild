@@ -67,5 +67,3 @@ jobs:
           name: kernel_build
           path: |
             ./output/arch/arm64/boot/
-            kernelsource/vmlinux
-            kernelsource/build.log
