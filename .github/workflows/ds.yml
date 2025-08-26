@@ -60,7 +60,6 @@ jobs:
           export PATH=$PATH:${{ env.TOOLCHAIN_PATH }}
           export CROSS_COMPILE=aarch64-linux-android-
           make -j$(nproc) V=1 2>&1 | tee build.log
-          ls -lh arch/arm64/boot/Image
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
