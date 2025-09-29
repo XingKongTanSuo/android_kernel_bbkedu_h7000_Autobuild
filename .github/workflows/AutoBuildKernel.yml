@@ -25,7 +25,7 @@ jobs:
 
       - name: Fetch kernel source
         run: |
-          git clone https://github.com/XingKongTanSuo/android_kernel_bbkedu_H7000.git --depth 1 kernelsource
+          git clone https://codeberg.org/TipzTeam/android_kernel_oppo_msm8937.git --depth 1 kernelsource
 
       - name: Fetch and prepare toolchain
         run: |
@@ -38,7 +38,7 @@ jobs:
           cd kernelsource
           export ARCH=arm64
           export SUBARCH=arm64
-          make h7000_defconfig
+          make defconfig
           ./scripts/config --file .config \
             --set-val CONFIG_KERNEL_GZIP y \
             --set-val CONFIG_KERNEL_BZIP2 n \
@@ -54,18 +54,18 @@ jobs:
         run: |
           cd kernelsource
           export STOP_SHIP_TRACEPRINTK=1
-          export LINUX_GCC_CROSS_COMPILE_PREBUILTS_BIN=/home/runner/work/android_kernel_bbkedu_h7000_Autobuild/android_kernel_bbkedu_h7000_Autobuild/toolchain/jonascardoso-toolchain_aarch64_travis-517026371d60/google_gcc/aarch64-linux-android-4.9/bin
-          export ANDROID_AARCH64=/home/runner/work/android_kernel_bbkedu_h7000_Autobuild/android_kernel_bbkedu_h7000_Autobuild/toolchain/jonascardoso-toolchain_aarch64_travis-517026371d60/google_gcc/aarch64-linux-android-4.9/bin
+          export LINUX_GCC_CROSS_COMPILE_PREBUILTS_BIN=/home/runner/work/android_kernel_old_Autobuild/android_kernel_old_Autobuild/toolchain/jonascardoso-toolchain_aarch64_travis-517026371d60/google_gcc/aarch64-linux-android-4.9/bin
+          export ANDROID_AARCH64=/home/runner/work/android_kernel_old_Autobuild/android_kernel_old_Autobuild/toolchain/jonascardoso-toolchain_aarch64_travis-517026371d60/google_gcc/aarch64-linux-android-4.9/bin
           export ARCH=arm64
           export SUBARCH=arm64
           export PATH=$PATH:$ANDROID_AARCH64
           export CROSS_COMPILE=aarch64-linux-android-
-          make -j2 | tee build.log
+          make 0=out
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
           name: kernel_build
           path: |
-            /home/runner/work/android_kernel_bbkedu_h7000_Autobuild/android_kernel_bbkedu_h7000_Autobuild/kernelsource/arch/arm64/boot/Image
+            kernelsource/out/arch/arm64/boot/Image
 
