@@ -59,6 +59,8 @@ jobs:
           export ARCH=arm64
           export SUBARCH=arm64
           export PATH=$PATH:$ANDROID_AARCH64
+          export MACH_OPPO_MSM8953=arm64
+          export MACH_OPPO_MSM8953=arm64
           export CROSS_COMPILE=aarch64-linux-android-
           make 0=out
 
