@@ -38,7 +38,7 @@ jobs:
           cd kernelsource
           export ARCH=arm64
           export SUBARCH=arm64
-          make defconfig
+          make lineageos_A57_defconfig
           ./scripts/config --file .config \
             --set-val CONFIG_KERNEL_GZIP y \
             --set-val CONFIG_KERNEL_BZIP2 n \
