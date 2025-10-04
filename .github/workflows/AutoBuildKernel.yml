@@ -25,7 +25,7 @@ jobs:
 
       - name: Fetch kernel source
         run: |
-          git clone https://github.com/XingKongTanSuo/kernel_oneplus_msm8998 --depth 1 kernelsource
+          git clone https://github.com/XingKongTanSuo/kernel_oneplus_msm8998 -b 9.0 --depth 1 kernelsource
 
       - name: Fetch and prepare toolchain
         run: |
@@ -38,7 +38,7 @@ jobs:
           cd kernelsource
           export ARCH=arm64
           export SUBARCH=arm64
-          make lineage_oneplus5_defconfig
+          make h7000_defconfig
           ./scripts/config --file .config \
             --set-val CONFIG_KERNEL_GZIP y \
             --set-val CONFIG_KERNEL_BZIP2 n \
