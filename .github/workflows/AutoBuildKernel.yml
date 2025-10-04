@@ -25,7 +25,7 @@ jobs:
 
       - name: Fetch kernel source
         run: |
-          git clone https://github.com/XingKongTanSuo/kernel_oneplus_msm8998 --depth 1 kernelsource
+          git clone https://github.com/XingKongTanSuo/kernel_oneplus_msm8998 -b 9.0 --depth 1 kernelsource
 
       - name: Fetch and prepare toolchain
         run: |
