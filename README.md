@@ -1,1 +1,1 @@
-# Build Android Kernel for bbkedu h7000 (sdm660)
+# Build Android Kernel for your old devices
