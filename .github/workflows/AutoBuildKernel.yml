@@ -25,7 +25,7 @@ jobs:
 
       - name: Fetch kernel source
         run: |
-          git clone https://github.com/XingKongTanSuo/Xiaomi_Kernel_OpenSource --depth 1 kernelsource
+          git clone https://github.com/kyasu/android_kernel_xiaomi_sdm660 -b lineage-17.1 --depth 1 kernelsource
 
       - name: Fetch and prepare toolchain
         run: |
@@ -38,7 +38,7 @@ jobs:
           cd kernelsource
           export ARCH=arm64
           export SUBARCH=arm64
-          make clover-perf_defconfig
+          make sdm660-perf_defconfig
           ./scripts/config --file .config \
             --set-val CONFIG_KERNEL_GZIP y \
             --set-val CONFIG_KERNEL_BZIP2 n \
